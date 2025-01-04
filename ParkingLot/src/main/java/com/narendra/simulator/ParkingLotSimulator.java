@@ -13,11 +13,15 @@ import com.narendra.entity.vehicle.VehicleType;
 import com.narendra.repository.ParkingLotRepository;
 import com.narendra.service.contract.fee.IFeeCalculationService;
 import com.narendra.service.contract.parking.IParkingService;
+import com.narendra.service.contract.parking.addon.IAddonParkingService;
 import com.narendra.service.contract.payment.IPaymentService;
 import com.narendra.service.contract.spotallocation.ISpotAllocationService;
 import com.narendra.service.contract.ticketpayment.ITicketPaymentLinkService;
 import com.narendra.service.impl.fee.FeeCalculationService;
+import com.narendra.service.impl.fee.strategy.FeeCalculationStrategyFactory;
 import com.narendra.service.impl.parking.ParkingService;
+import com.narendra.service.impl.parking.addon.ElectricChargeAddonParkingService;
+import com.narendra.service.impl.parking.addon.WashAddonParkingService;
 import com.narendra.service.impl.payment.PaymentService;
 import com.narendra.service.impl.spotallocation.SpotAllocationService;
 import com.narendra.service.impl.ticketpayment.TicketPaymentLinkService;
@@ -28,14 +32,14 @@ public class ParkingLotSimulator {
         DisplayBoard floorDisplayBoard1 = new DisplayBoard();
         DisplayBoard floorDisplayBoard2 = new DisplayBoard();
 
-        ParkingSpot twoWheelerFloor1 = new ParkingSpot(VehicleType.TWO_WHEELER);
-        ParkingSpot twoWheelerFloor2 = new ParkingSpot(VehicleType.TWO_WHEELER);
+        ParkingSpot twoWheelerFloor1 = new ParkingSpot(VehicleType.TWO_WHEELER, FeeCalculationStrategyFactory.getFeeCalculationStrategy(VehicleType.TWO_WHEELER));
+        ParkingSpot twoWheelerFloor2 = new ParkingSpot(VehicleType.TWO_WHEELER, FeeCalculationStrategyFactory.getFeeCalculationStrategy(VehicleType.TWO_WHEELER));
 
-        ParkingSpot fourWheelerFloor1 = new ParkingSpot(VehicleType.FOUR_WHEELER);
-        ParkingSpot fourWheelerFloor2 = new ParkingSpot(VehicleType.FOUR_WHEELER);
+        ParkingSpot fourWheelerFloor1 = new ParkingSpot(VehicleType.FOUR_WHEELER, FeeCalculationStrategyFactory.getFeeCalculationStrategy(VehicleType.FOUR_WHEELER));
+        ParkingSpot fourWheelerFloor2 = new ParkingSpot(VehicleType.FOUR_WHEELER, FeeCalculationStrategyFactory.getFeeCalculationStrategy(VehicleType.FOUR_WHEELER));
 
-        ParkingSpot heavyFloor1 = new ParkingSpot(VehicleType.HEAVY);
-        ParkingSpot heavyFloor2 = new ParkingSpot(VehicleType.HEAVY);
+        ParkingSpot heavyFloor1 = new ParkingSpot(VehicleType.HEAVY, FeeCalculationStrategyFactory.getFeeCalculationStrategy(VehicleType.HEAVY));
+        ParkingSpot heavyFloor2 = new ParkingSpot(VehicleType.HEAVY, FeeCalculationStrategyFactory.getFeeCalculationStrategy(VehicleType.HEAVY));
 
         ParkingFloor floor1 = new ParkingFloor(floorDisplayBoard1);
         floor1.addParkingSpot(twoWheelerFloor1);
@@ -79,6 +83,13 @@ public class ParkingLotSimulator {
         Vehicle vehicle = new Vehicle("123456", VehicleType.TWO_WHEELER);
         ParkingSpot parkingSpot = spotAllocationController.getFreeParkingSpot(entry1, vehicle.getVehicleType());
         ParkingTicket parkingTicket = parkingController.occupyParkingSpot(vehicle, parkingSpot);
+
+        //Avail wash add-on service
+        IAddonParkingService washAddonParkingService = new WashAddonParkingService();
+        IAddonParkingService electricChargeAddonParkingService = new ElectricChargeAddonParkingService();
+
+        washAddonParkingService.availAddonParkingService(parkingTicket);
+        electricChargeAddonParkingService.availAddonParkingService(parkingTicket);
 
         //Simulate vacate of two-wheeler vehicle.
         double fee = feeCalculationService.calculateFee(parkingTicket);
