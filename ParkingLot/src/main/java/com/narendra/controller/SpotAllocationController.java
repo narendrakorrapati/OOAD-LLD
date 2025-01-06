@@ -2,6 +2,7 @@ package com.narendra.controller;
 
 import com.narendra.entity.parking.Entry;
 import com.narendra.entity.parking.ParkingSpot;
+import com.narendra.entity.parking.SpotAllocationStrategyType;
 import com.narendra.entity.vehicle.VehicleType;
 import com.narendra.service.contract.spotallocation.ISpotAllocationService;
 
@@ -14,7 +15,7 @@ public class SpotAllocationController {
     /*
       Enforce role based checking
      */
-    public ParkingSpot getFreeParkingSpot(Entry entry, VehicleType vehicleType) {
-        return spotAllocationService.getFreeParkingSpot(entry, vehicleType);
+    public ParkingSpot getFreeParkingSpot(Entry entry, VehicleType vehicleType, SpotAllocationStrategyType spotAllocationStrategyType) {
+        return spotAllocationService.getFreeParkingSpot(entry, vehicleType, spotAllocationStrategyType);
     }
 }

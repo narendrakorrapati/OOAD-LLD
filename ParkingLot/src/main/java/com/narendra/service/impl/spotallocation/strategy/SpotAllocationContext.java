@@ -6,7 +6,7 @@ import com.narendra.entity.parking.ParkingSpot;
 import com.narendra.entity.vehicle.VehicleType;
 
 public class SpotAllocationContext {
-    private SpotAllocationStrategy spotAllocationStrategy;
+    private final SpotAllocationStrategy spotAllocationStrategy;
 
     public SpotAllocationContext(SpotAllocationStrategy spotAllocationStrategy) {
         this.spotAllocationStrategy = spotAllocationStrategy;

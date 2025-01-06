@@ -17,6 +17,6 @@ public class NearestSpotAllocationStrategy implements SpotAllocationStrategy{
                 }
             }
         }
-        throw new ParkingLotFullException();
+        throw new ParkingLotFullException(vehicleType);
     }
 }
