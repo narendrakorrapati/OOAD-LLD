@@ -5,11 +5,11 @@ import com.narendra.entity.parking.ParkingSpot;
 import com.narendra.entity.parking.ParkingTicket;
 import com.narendra.entity.vehicle.Vehicle;
 import com.narendra.exception.ParkingSpotAlreadyOccupiedException;
-import com.narendra.service.contract.parking.IParkingService;
+import com.narendra.service.contract.parking.ParkingService;
 
 import java.time.LocalDateTime;
 
-public class ParkingService implements IParkingService {
+public class ParkingServiceImpl implements ParkingService {
     @Override
     public synchronized ParkingTicket occupyParkingSpot(Vehicle vehicle, ParkingSpot parkingSpot) {
         if(!parkingSpot.isFree()) {

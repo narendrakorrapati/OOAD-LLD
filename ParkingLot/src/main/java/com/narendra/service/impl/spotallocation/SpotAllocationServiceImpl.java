@@ -5,16 +5,16 @@ import com.narendra.entity.parking.ParkingSpot;
 import com.narendra.entity.parking.SpotAllocationStrategyType;
 import com.narendra.entity.vehicle.VehicleType;
 import com.narendra.repository.ParkingLotRepository;
-import com.narendra.service.contract.spotallocation.ISpotAllocationService;
+import com.narendra.service.contract.spotallocation.SpotAllocationService;
 import com.narendra.service.impl.spotallocation.strategy.SpotAllocationContext;
 import com.narendra.service.impl.spotallocation.strategy.SpotAllocationContextFactory;
 
-public class SpotAllocationService implements ISpotAllocationService {
+public class SpotAllocationServiceImpl implements SpotAllocationService {
 
     private final ParkingLotRepository parkingLotRepository;
     private final SpotAllocationContextFactory spotAllocationContextFactory;
 
-    public SpotAllocationService(ParkingLotRepository parkingLotRepository, SpotAllocationContextFactory spotAllocationContextFactory) {
+    public SpotAllocationServiceImpl(ParkingLotRepository parkingLotRepository, SpotAllocationContextFactory spotAllocationContextFactory) {
         this.parkingLotRepository = parkingLotRepository;
         this.spotAllocationContextFactory = spotAllocationContextFactory;
     }

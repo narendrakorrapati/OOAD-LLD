@@ -1,12 +1,12 @@
 package com.narendra.service.impl.fee;
 
 import com.narendra.entity.parking.ParkingTicket;
-import com.narendra.service.contract.fee.IFeeCalculationService;
+import com.narendra.service.contract.fee.FeeCalculationService;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-public class FeeCalculationService implements IFeeCalculationService {
+public class FeeCalculationServiceImpl implements FeeCalculationService {
     @Override
     public double calculateFee(ParkingTicket parkingTicket) {
         LocalDateTime currentTime = LocalDateTime.now();

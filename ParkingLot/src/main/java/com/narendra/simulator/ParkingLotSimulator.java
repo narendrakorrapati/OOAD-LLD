@@ -11,21 +11,21 @@ import com.narendra.entity.payment.PaymentTransaction;
 import com.narendra.entity.vehicle.Vehicle;
 import com.narendra.entity.vehicle.VehicleType;
 import com.narendra.repository.ParkingLotRepository;
-import com.narendra.service.contract.fee.IFeeCalculationService;
-import com.narendra.service.contract.parking.IParkingService;
-import com.narendra.service.contract.parking.addon.IAddonParkingService;
-import com.narendra.service.contract.payment.IPaymentService;
-import com.narendra.service.contract.spotallocation.ISpotAllocationService;
-import com.narendra.service.contract.ticketpayment.ITicketPaymentLinkService;
-import com.narendra.service.impl.fee.FeeCalculationService;
+import com.narendra.service.contract.fee.FeeCalculationService;
+import com.narendra.service.contract.parking.ParkingService;
+import com.narendra.service.contract.parking.addon.AddonParkingService;
+import com.narendra.service.contract.payment.PaymentService;
+import com.narendra.service.contract.spotallocation.SpotAllocationService;
+import com.narendra.service.contract.ticketpayment.TicketPaymentLinkService;
+import com.narendra.service.impl.fee.FeeCalculationServiceImpl;
 import com.narendra.service.impl.fee.strategy.FeeCalculationStrategyFactory;
-import com.narendra.service.impl.parking.ParkingService;
+import com.narendra.service.impl.parking.ParkingServiceImpl;
 import com.narendra.service.impl.parking.addon.ElectricChargeAddonParkingService;
 import com.narendra.service.impl.parking.addon.WashAddonParkingService;
-import com.narendra.service.impl.payment.PaymentService;
-import com.narendra.service.impl.spotallocation.SpotAllocationService;
+import com.narendra.service.impl.payment.PaymentServiceImpl;
+import com.narendra.service.impl.spotallocation.SpotAllocationServiceImpl;
 import com.narendra.service.impl.spotallocation.strategy.SpotAllocationContextFactory;
-import com.narendra.service.impl.ticketpayment.TicketPaymentLinkService;
+import com.narendra.service.impl.ticketpayment.TicketPaymentLinkServiceImpl;
 
 public class ParkingLotSimulator {
     public static void main(String[] args) {
@@ -69,12 +69,12 @@ public class ParkingLotSimulator {
 
         //Setup Services/Repositories
         ParkingLotRepository parkingLotRepository = new ParkingLotRepository(parkingLot);
-        IParkingService parkingService = new ParkingService();
-        IFeeCalculationService feeCalculationService = new FeeCalculationService();
-        IPaymentService paymentService = new PaymentService();
+        ParkingService parkingService = new ParkingServiceImpl();
+        FeeCalculationService feeCalculationService = new FeeCalculationServiceImpl();
+        PaymentService paymentService = new PaymentServiceImpl();
         SpotAllocationContextFactory spotAllocationContextFactory = SpotAllocationContextFactory.getInstance();
-        ISpotAllocationService spotAllocationService = new SpotAllocationService(parkingLotRepository, spotAllocationContextFactory);
-        ITicketPaymentLinkService ticketPaymentLinkService = new TicketPaymentLinkService();
+        SpotAllocationService spotAllocationService = new SpotAllocationServiceImpl(parkingLotRepository, spotAllocationContextFactory);
+        TicketPaymentLinkService ticketPaymentLinkService = new TicketPaymentLinkServiceImpl();
 
         //Setup Controllers
         SpotAllocationController spotAllocationController = new SpotAllocationController(spotAllocationService);
@@ -88,8 +88,8 @@ public class ParkingLotSimulator {
         ParkingTicket parkingTicket = parkingController.occupyParkingSpot(vehicle, parkingSpot);
 
         //Avail wash add-on service
-        IAddonParkingService washAddonParkingService = new WashAddonParkingService();
-        IAddonParkingService electricChargeAddonParkingService = new ElectricChargeAddonParkingService();
+        AddonParkingService washAddonParkingService = new WashAddonParkingService();
+        AddonParkingService electricChargeAddonParkingService = new ElectricChargeAddonParkingService();
 
         washAddonParkingService.availAddonParkingService(parkingTicket);
         electricChargeAddonParkingService.availAddonParkingService(parkingTicket);

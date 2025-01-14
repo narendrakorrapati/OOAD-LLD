@@ -5,7 +5,7 @@ import com.narendra.entity.parking.ParkingSpot;
 import com.narendra.entity.parking.SpotAllocationStrategyType;
 import com.narendra.entity.vehicle.VehicleType;
 
-public interface ISpotAllocationService {
+public interface SpotAllocationService {
 
     ParkingSpot getFreeParkingSpot(Entry entry, VehicleType vehicleType, SpotAllocationStrategyType spotAllocationStrategyType);
 }

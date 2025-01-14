@@ -4,12 +4,12 @@ import com.narendra.entity.parking.Exit;
 import com.narendra.entity.parking.ParkingSpot;
 import com.narendra.entity.parking.ParkingTicket;
 import com.narendra.entity.vehicle.Vehicle;
-import com.narendra.service.contract.parking.IParkingService;
+import com.narendra.service.contract.parking.ParkingService;
 
 public class ParkingController {
-    private final IParkingService parkingService;
+    private final ParkingService parkingService;
 
-    public ParkingController(IParkingService parkingService) {
+    public ParkingController(ParkingService parkingService) {
         this.parkingService = parkingService;
     }
 

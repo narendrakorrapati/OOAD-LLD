@@ -1,13 +1,13 @@
 package com.narendra.controller;
 
 import com.narendra.entity.parking.ParkingTicket;
-import com.narendra.service.contract.fee.IFeeCalculationService;
+import com.narendra.service.contract.fee.FeeCalculationService;
 
 public class FeeCalculationController {
 
-    private final IFeeCalculationService feeCalculationService;
+    private final FeeCalculationService feeCalculationService;
 
-    public FeeCalculationController(IFeeCalculationService feeCalculationService) {
+    public FeeCalculationController(FeeCalculationService feeCalculationService) {
         this.feeCalculationService = feeCalculationService;
     }
 

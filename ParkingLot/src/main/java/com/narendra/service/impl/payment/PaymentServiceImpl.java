@@ -3,11 +3,11 @@ package com.narendra.service.impl.payment;
 import com.narendra.entity.payment.PaymentMethod;
 import com.narendra.entity.payment.PaymentStatus;
 import com.narendra.entity.payment.PaymentTransaction;
-import com.narendra.service.contract.payment.IPaymentService;
+import com.narendra.service.contract.payment.PaymentService;
 
 import java.time.LocalDateTime;
 
-public class PaymentService implements IPaymentService {
+public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public PaymentTransaction processPayment(PaymentMethod paymentMethod) {

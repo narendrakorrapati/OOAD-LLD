@@ -3,9 +3,9 @@ package com.narendra.service.impl.ticketpayment;
 import com.narendra.entity.parking.ParkingTicket;
 import com.narendra.entity.payment.PaymentTransaction;
 import com.narendra.entity.ticketpayment.TicketPaymentTransaction;
-import com.narendra.service.contract.ticketpayment.ITicketPaymentLinkService;
+import com.narendra.service.contract.ticketpayment.TicketPaymentLinkService;
 
-public class TicketPaymentLinkService implements ITicketPaymentLinkService {
+public class TicketPaymentLinkServiceImpl implements TicketPaymentLinkService {
     @Override
     public void linkTicketPayment(ParkingTicket parkingTicket, PaymentTransaction paymentTransaction) {
         TicketPaymentTransaction ticketPaymentTransaction = new TicketPaymentTransaction(parkingTicket, paymentTransaction);

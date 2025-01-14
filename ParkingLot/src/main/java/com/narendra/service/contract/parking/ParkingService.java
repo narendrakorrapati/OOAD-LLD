@@ -5,7 +5,7 @@ import com.narendra.entity.parking.ParkingSpot;
 import com.narendra.entity.parking.ParkingTicket;
 import com.narendra.entity.vehicle.Vehicle;
 
-public interface IParkingService {
+public interface ParkingService {
     ParkingTicket occupyParkingSpot(Vehicle vehicle, ParkingSpot parkingSpot);
     void vacateParkingSpot(Exit exit, ParkingTicket parkingTicket);
 }

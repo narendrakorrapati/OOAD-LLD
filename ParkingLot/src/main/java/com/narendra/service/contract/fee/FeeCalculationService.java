@@ -2,6 +2,6 @@ package com.narendra.service.contract.fee;
 
 import com.narendra.entity.parking.ParkingTicket;
 
-public interface IFeeCalculationService {
+public interface FeeCalculationService {
     double calculateFee(ParkingTicket parkingTicket);
 }
