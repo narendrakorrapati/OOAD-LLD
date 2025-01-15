@@ -1,6 +1,6 @@
-Parking Lot
+# Parking Lot
 
-Requirements
+## Requirements
 - The parking lot should have multiple floors where customers can park their cars.
 - The parking lot should have multiple entry and exit points.
 - Customers can collect a parking ticket from the entry points and can pay the parking fee at the exit points to the parking attendant or automated exit panel
