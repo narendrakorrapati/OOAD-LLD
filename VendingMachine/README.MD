@@ -6,3 +6,17 @@
 4. The machine should keep track of the available products and their quantities.
 5. The machine should provide an interface for restocking products and collecting money.
 6. The machine should handle exceptional scenarios, such as insufficient funds or out-of-stock products.
+
+```mermaid
+stateDiagram
+    [*] --> Idle
+    Idle --> AcceptingCash: initiate()
+    AcceptingCash --> SelectingProduct: insertCash()
+    AcceptingCash --> ReturningCash: cancel()
+    SelectingProduct --> ReturningCash: cancel()
+    SelectingProduct --> DispensingProduct: selectProduct()
+    SelectingProduct --> AcceptingCash: insufficientFunds()
+    ReturningCash --> Idle: returnCash()
+    DispensingProduct --> DispensingChange: dispenseProduct()
+    DispensingChange --> Idle: dispenseChange()
+```
