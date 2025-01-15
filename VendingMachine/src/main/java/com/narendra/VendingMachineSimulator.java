@@ -22,7 +22,7 @@ public class VendingMachineSimulator {
         vendingMachine.cancel();
         assert vendingMachine.getState() == vendingMachine.getIdleState() : "State should be idle";
         assert vendingMachine.getTotalInsertedAmount() == 0 : "Total inserted amount should be 0.0";
-        System.out.println("Test 4: Passed, cancel() working");
+        System.out.println("Test 5: Passed, cancel() working");
     }
 
     private static void testInsertCash(VendingMachine vendingMachine) {
