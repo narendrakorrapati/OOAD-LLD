@@ -24,14 +24,12 @@ public class CheckingProduct implements State{
         }
     }
 
-    @Override
-    public void handleInvalidProduct(int productId) {
+    private void handleInvalidProduct(int productId) {
         System.out.println("Selected product is not found in inventory:" + productId + ", select another");
         vendingMachine.setState(vendingMachine.getAcceptingCashState());
     }
 
-    @Override
-    public void handleOutOfStock(int productId) {
+    private void handleOutOfStock(int productId) {
         System.out.println("Selected product is out of stock:" + productId + ", select another or cancel");
         vendingMachine.setState(vendingMachine.getAcceptingCashState());
     }

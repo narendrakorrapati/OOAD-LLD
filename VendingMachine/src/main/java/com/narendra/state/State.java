@@ -13,12 +13,6 @@ public interface State {
     default void productSelected(int productId) {
         System.out.println("Can't select product now");
     }
-    default void handleInvalidProduct(int productId) {
-        System.out.println("Can't handle invalid product now");
-    }
-    default void handleOutOfStock(int productId) {
-        System.out.println("Can't handle out of stock now");
-    }
 
     default void checkProduct(int productId) {
         System.out.println("Can't check product now");
@@ -28,9 +22,6 @@ public interface State {
     }
     default void dispenseProduct(Product product) {
         System.out.println("Can't dispense a product now");
-    }
-    default void handleInsufficientFunds(double price, double cash) {
-        System.out.println("Can't handle insufficient funds now");
     }
     default List<Cash> cancel() {
         System.out.println("Can't cancel now");
