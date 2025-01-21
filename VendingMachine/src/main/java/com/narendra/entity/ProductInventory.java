@@ -5,11 +5,9 @@ import java.util.Map;
 
 public class ProductInventory {
     private final Map<Integer, Product> productsMap = new HashMap<>();
-
     public void restock(Product product) {
         productsMap.put(product.getCode(), product);
     }
-
     public Product getProductByCode(int code) {
         return productsMap.get(code);
     }
