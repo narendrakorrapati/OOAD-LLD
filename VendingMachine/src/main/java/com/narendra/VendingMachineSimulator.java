@@ -14,7 +14,13 @@ public class VendingMachineSimulator {
         vendingMachine.getProductInventory().restock(new Product("Coke", 11.0, 10));
 
         vendingMachine.insertCash(Cash.TEN);
-        List<Cash> cash = vendingMachine.cancel();
-        System.out.println(cash.stream().mapToDouble(Cash::getValue).sum());
+
+        try {
+            Thread.sleep(6000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        vendingMachine.productSelected(1);
     }
 }

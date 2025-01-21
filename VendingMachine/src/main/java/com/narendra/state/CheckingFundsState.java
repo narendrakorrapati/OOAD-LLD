@@ -22,9 +22,7 @@ public class CheckingFundsState implements State{
             vendingMachine.getState().dispenseProduct(product);
         }
     }
-
-    @Override
-    public void handleInsufficientFunds(double price, double cash) {
+    private void handleInsufficientFunds(double price, double cash) {
         System.out.println("Insufficient funds. Actual price is " + price + " but has cash " + cash + ". Insert more cash");
         vendingMachine.setState(vendingMachine.getAcceptingCashState());
     }
