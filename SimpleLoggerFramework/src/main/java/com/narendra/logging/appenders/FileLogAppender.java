@@ -12,7 +12,7 @@ public class FileLogAppender implements LogAppender{
         this.filePath = filePath;
     }
     @Override
-    public void log(LogMessage logMessage) {
+    public synchronized void log(LogMessage logMessage) {
         try(FileWriter fileWriter = new FileWriter(new File(filePath), true)) {
             fileWriter.write(logMessage.toString() + "\n");
         } catch (IOException e) {
